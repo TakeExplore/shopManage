@@ -1,0 +1,32 @@
+.add-product{
+    max-height:400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 10px;
+}
+
+.delete-success{
+    position: absolute;
+    float: right;
+    top: 50px;
+    width: 20vw;
+    left: 70vw;
+    z-index: 99;
+}
+
+.handle-btn{
+    visibility: hidden;
+}
+
+.upload{
+    background-color:rgb(238, 238, 238);
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
+}
+
+.thumbnail{
+    cursor: pointer;
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<title>专题</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/active.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<!-- 操作成功或失败的提示 -->
+		<div class="alert alert-success alert-dismissible fade in delete-success" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+					aria-hidden="true">×</span></button>
+			<strong>操作成功!</strong>
+		</div>
+		
+		<div class="alert alert-danger alert-dismissible fade in delete-success" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+					aria-hidden="true">×</span></button>
+			<strong>操作失败!</strong>
+		</div>
+
+		<ul class="nav nav-tabs nav-justified">
+			<li role="presentation"><a href="index.html">全部商品</a></li>
+			<li role="presentation"><a href="active.html">专题</a></li>
+			<li role="presentation" class="active"><a href="special.html">活动</a></li>
+		</ul>
+
+		<!-- 操作按钮 搜索框 -->
+		<div class="container">
+			<div class="row" id="search">
+				<div class="col-lg-8">
+					<div class="btn-group btn-search" role="group" aria-label="...">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default">最新发布</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default">最旧发布</button>
+						</div>
+					</div>
+					<button type="button" id="manage" class="btn btn-default" onclick="showManage()">
+						管理
+					</button>
+					<button type="button" id="manage" onclick="addActivity()" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+						增加活动
+					</button>
+				</div>
+				<div class="col-lg-4">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button">Go!</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container content">
+			<div class="row box">
+				<!-- 一个专题 根据数据条数增加节点-->
+				<div class="col-sm-4 col-md-3">
+					<div class="thumbnail">
+						<img src="images/example.svg" alt="banner">
+						<div class="caption">
+							<h3>专题名称</h3>
+							<p class="handle-btn">
+								<button class="btn btn-danger" type="button" data-toggle="modal"
+									data-target=".bs-example-modal-sm">删除</button>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4 col-md-3">
+					<div class="thumbnail">
+						<img src="images/example.svg" alt="banner">
+						<div class="caption">
+							<h3>专题名称</h3>
+							<p class="handle-btn">
+								<button class="btn btn-danger" type="button" data-toggle="modal"
+									data-target=".bs-example-modal-sm">删除</button>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-3">
+					<div class="thumbnail">
+						<img src="images/example.svg" alt="banner">
+						<div class="caption">
+							<h3>专题名称</h3>
+							<p class="handle-btn">
+								<button class="btn btn-danger" type="button" data-toggle="modal"
+									data-target=".bs-example-modal-sm">删除</button>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 分页 每页超过16个商品的时候就在下一页显示-->
+			<nav aria-label="Page navigation" class="cut-page">
+				<ul class="pagination">
+					<li>
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li>
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+
+	<!-- 增加/查看专题 -->
+	<div class="modal fade  bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+							aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">专题信息</h4>
+				</div>
+				<div class="modal-body">
+					<!-- 查看专题时显示菜单 -->
+					<ul class="nav nav-tabs" id="activityMenu">
+						<li role="presentation" class="active" id="basic" onclick="showBasic()"><a href="#">基本信息</a></li>
+						<li role="presentation" id="owner" onclick="showOwner()"><a href="#">已有物品</a></li>
+					</ul>
+					<!-- form表单传递数据的部分 -->
+					<form id="addActivity">
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">专题名称</label>
+							<input type="text" class="form-control" value="" id="recipient-name"/>
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">专题图片</label>
+							<div class="upload" id="4" onclick="upLoadClick()">
+								+
+								<img src="#" style="z-index: 10">
+							</div>
+							<input style="display: none" id="up" type="file"/>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label">专题描述</label>
+							<textarea class="form-control" id="message-text" value=""></textarea>
+						</div>
+					</form>
+
+					<div class="add-product" id="showProduct" style="display:none">
+						<div class="row">
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail" id="1">
+									<img src="images/example.svg" alt="banner">
+									<div class="caption">
+										<h4>商品名称</h4>
+										<span class="label label-warning">标签</span>
+										<p>商品描述商品描述商品描述商品描述</p>
+										<p>
+											<a href="#" id="11" class="btn btn-danger" role="button">删除</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail" id="2">
+									<img src="images/example.svg" alt="banner">
+									<div class="caption">
+										<h4>商品名称</h4>
+										<span class="label label-warning">标签</span>
+										<p>商品描述商品描述商品描述商品描述</p>
+										<p>
+											<a href="#" id="22" class="btn btn-danger" role="button">删除</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail" id="3">
+									<img src="images/example.svg" alt="banner">
+									<div class="caption">
+										<h4>商品名称</h4>
+										<span class="label label-warning">标签</span>
+										<p>商品描述商品描述商品描述商品描述</p>
+										<p>
+											<a href="#" id="33" class="btn btn-danger" role="button">删除</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 删除模态框 -->
+	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					确定删除吗？
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-danger">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="./js/active.js"></script>
+
+</html>

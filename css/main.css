@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    padding: 0;
+    /* width: 100vw;
+    height: 100vh;
+    min-height: 512px;
+    min-width: 512px;
+    overflow: hidden;
+    overflow-y: auto; */
+}
+
+.wrapper{
+    height: 100%;
+}
+
+
+#search{
+    margin-top: 10px;
+}
+
+.content{
+    margin-top: 10px;
+    overflow-y: auto;
+}
+
+.btn-search{
+    margin-right: 20px
+}
+
+.cut-page{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 42%;
+}
+
+/* .thumbnail{
+    max-height: 400px;
+}
+
+.thumbnail img{
+    
+} */
